@@ -72,6 +72,18 @@ public class LinkedList {
             //swap old head to the new head ie node
             head = node;
         }
+        size ++;
+    }
+
+
+    public void removeFirst(){
+        if(size != 0){
+            Node temp = head;
+            head = head.next;
+            System.out.println("Removed: " + temp.data);
+        }else{
+            System.out.println("Null");
+        }
     }
 
 

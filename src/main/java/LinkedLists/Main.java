@@ -12,7 +12,8 @@ public class Main {
         linkedList.appendNode(54);
 
         linkedList.printList();
-        System.out.println("Removed : " + linkedList.removeLast().data);
+//        System.out.println("Removed : " + linkedList.removeLast().data);
+        linkedList.removeFirst();
         linkedList.printList();
 
     }
