@@ -76,14 +76,33 @@ public class LinkedList {
     }
 
 
-    public void removeFirst(){
-        if(size != 0){
-            Node temp = head;
-            head = head.next;
-            System.out.println("Removed: " + temp.data);
-        }else{
-            System.out.println("Null");
+    public Node removeFirst(){
+        if(size == 0)   return null;
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        size --;
+        return temp;
+    }
+
+
+    public Node get(int index){
+        if(index < 0 || index == size) return null;
+        Node temp = head;
+        for (int i=0; i < index; i++){
+            temp = temp.next;
         }
+        return temp;
+    }
+
+    public boolean set(int index, int data){
+        Node temp = get(index);
+        if(temp != null){
+            temp.data = data;
+            return true;
+        }
+        return false;
+
     }
 
 
