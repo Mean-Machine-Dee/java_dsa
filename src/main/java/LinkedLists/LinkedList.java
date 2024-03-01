@@ -1,6 +1,7 @@
 package LinkedLists;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LinkedList {
@@ -218,20 +219,119 @@ public class LinkedList {
             Node current = head;
 
             while (current != null) {
+
                 if (current.data < x) {
+                    System.out.println("Appending small: " + current.data);
                     prev1.next = current;
                     prev1 = current;
                 } else {
+                    System.out.println("Appending big: " + current.data);
                     prev2.next = current;
                     prev2 = current;
                 }
                 current = current.next;
             }
 
+
             prev2.next = null;
             prev1.next = dummy2.next;
 
             head = dummy1.next;
+        }
+
+
+        public void removeDuplicates(){
+            if(head == null || head.next == null) return;
+            HashSet<Integer> set = new HashSet<>();
+            Node current = head;
+            Node previous = null;
+            while (current != null){
+                System.out.println("current: " + current.data + " prev" + (previous != null ? previous.data: null));
+                int curVal = current.data;
+                if(set.contains(curVal)){
+                    previous.next = current.next;
+                }else{
+                    set.add(current.data);
+                    previous = current;
+                }
+
+                current = current.next;
+            }
+
+        }
+
+        public int binaryToDecimal(){
+            if( head == null ) return 0;
+
+            int ans = 0;
+            Node current = head;
+            int listSize = linkLength();
+            while (current != null){
+                System.out.println("current " + current.data);
+                int curVal = current.data;
+                 int toPower = (int) (curVal * Math.pow(2,listSize-1));
+                 ans += toPower;
+                listSize --;
+                current = current.next;
+            }
+
+            return ans;
+
+        }
+
+        private int linkLength(){
+            int len = 0;
+            while(head != null){
+                len++;
+                head = head.next;
+            }
+
+            return len;
+        }
+
+
+        public void reverseBetween(int start, int stop){
+        //0 ,1
+        //1 -> 2 -> 3 -> 4 -> 5
+            if(head == null ) return;
+            Node current = head;
+            //points to node before start node
+            Node prev = null;
+            int i = 0;
+
+            while (i < start){
+                prev = current;
+                current = current.next;
+                i+=1;
+            }
+
+            //This node stores from start .next ie 3
+            Node reversedTail = current;
+
+            // This stores the tail of reversed
+            Node reversedHead = null;
+
+
+            //reverse form start to stop nodes ie i = index 1, top is index 3
+            //reversing from 2->4
+            //1 -> 2 -> 3 -> 4 -> 5->6->7->8
+            while( i <= stop){
+                Node temp = current.next;
+                current.next = reversedHead;
+                reversedHead = current;
+                current = temp;
+                i+= 1;
+            }
+
+            if(prev != null){
+                prev.next = reversedHead;
+            }else{
+                head = reversedHead;
+            }
+
+            reversedTail.next = current;
+
+
         }
 
 
