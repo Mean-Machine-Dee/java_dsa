@@ -1,6 +1,7 @@
 package Heaps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -24,7 +25,10 @@ public class Main {
 
 //        System.out.println(kthSmallest(arr,3));
 
-        String[] items = {"flower","flow","flight"};
+        String[] items = {"flower","flow","flight","flog", "fli"};
+//        String[] items = {"dog","racecar","do"};
+        Arrays.sort(items);
+        System.out.println(Arrays.toString(items));
         System.out.println(longestPref(items));
 
     }
@@ -39,7 +43,7 @@ public class Main {
                 System.out.println(arr[i].indexOf(result) + " current item " + arr[i]  + " indexOF " + result );
                 result = result.substring(0, result.length()-1);
                 if(result.isEmpty()){
-                    return "-1";
+                    return "null";
                 }
                 System.out.println(result);
             }

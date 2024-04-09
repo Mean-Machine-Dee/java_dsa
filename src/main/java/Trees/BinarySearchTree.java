@@ -1,7 +1,14 @@
 package Trees;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinarySearchTree {
     Node root;
+
+
 
 
     class Node {
@@ -55,6 +62,53 @@ public class BinarySearchTree {
             }
             return false;
         }
+
+
+
+
+
+        public void insertR(int data){
+            root = insertRecurse(root,data);
+        }
+
+        public Node insertRecurse(Node root, int data){
+        if(root == null){
+            root = new Node(data);
+        }else if(data < root.data){
+            root.left = insertRecurse(root.left, data);
+        }else if(data > root.data){
+            root.right = insertRecurse(root.right, data);
+        }
+        return root;
+        }
+
+
+
+
+
+        public List<Integer> BFS(){
+            Node currentNode = root;
+            Queue<Node> queue = new LinkedList<>();
+            List<Integer> results = new ArrayList<>();
+            queue.add(currentNode);
+            while (queue.size() > 0){
+                currentNode = queue.remove();
+                results.add(currentNode.data);
+                if(currentNode.left != null){
+                    queue.add(currentNode.left);
+                }
+
+                if(currentNode.right != null){
+                    queue.add(currentNode.right);
+                }
+            }
+
+            return results;
+        }
+
+
+
+
 
     }
 
